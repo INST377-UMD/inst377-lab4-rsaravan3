@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title>INST377 - Lab 4</title>
+        <link rel="stylesheet" href="INST377 Lab 4 CSS.css">
+    </head>
+
+    <body>
+        <h1>INST377 - Lab 4</h1>
+        <body>
+            <div class="main-container">
+        
+                <div class="form-row">
+                    <div class="content-box">
+                        <form name="nameForm" onsubmit="validate(); return false;">
+                            <label>Name: </label>
+                            <input type="text" id="name" name="name">
+                            <input type="submit" value="Alert Me!">
+                        </form>
+                    </div>
+        
+                    <div class="content-box">
+                        <button type="button" onclick="changeColor()">Change Color</button>
+                    </div>
+                </div>
+        
+                <div class="form-row">
+                    <div class="content-box">
+                        <form name="validateForm" onsubmit="validateText(); return false;">
+                            <label>Text Tester: </label>
+                            <input type="text" id="textTester" name="textTester">
+                            <input type="submit" value="Validate Text">
+                        </form>
+                    </div>
+        
+                    <div class="content-box">
+                        <button type="button" onclick="addText()">Add Text</button>
+                    </div>
+                </div>
+            </div>
+        
+            <script>
+                function validate() {
+                    if (document.nameForm.name.value === "") {
+                        alert("Please enter your name");
+                    } else {
+                        alert("Hello " + document.nameForm.name.value);
+                    }
+                }
+        
+                function changeColor() {
+                    const body = document.body;
+                    const currentColor = window.getComputedStyle(body).backgroundColor;
+                    if (currentColor === 'rgb(165, 203, 198)') {
+                        body.classList.remove('original-background');
+                        body.classList.add('new-background');
+                    } else {
+                        body.classList.remove('new-background');
+                        body.classList.add('original-background');
+                    }
+                }
+
+                function validateText() {
+                    var validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+                    var textInput = document.validateForm.textTester.value;
+                    if (validation.test(textInput)) {
+                        alert("Special characters found, Try again!");
+                    } else {
+                        alert("No special characters in: " + textInput);
+                    }
+                }
+
+                function addText() {
+                    const heading = document.querySelector('h1');
+                    heading.textContent += " - Adding Text";
+                }
+
+            </script>
+    </body>
+</html>
